@@ -20,4 +20,27 @@
         <kotlin.version>1.6.21</kotlin.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.kotlin.api</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kotlin.api</groupId>
+            <artifactId>repository</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.kotlin.api</groupId>
+            <artifactId>service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
 </project>
