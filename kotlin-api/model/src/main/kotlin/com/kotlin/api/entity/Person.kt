@@ -1,5 +1,6 @@
 package com.kotlin.api.entity
 
+import com.kotlin.api.base.BaseEntity
 import lombok.AllArgsConstructor
 import lombok.Getter
 import lombok.NoArgsConstructor
@@ -12,23 +13,18 @@ import javax.persistence.*
 @NoArgsConstructor
 @Entity
 @Table(name = "person")
-data class Person(
+class Person : BaseEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    var id: Long? = 0
 
     @Column(name = "NAME")
-    val name: String,
+    var name: String? = null
 
     @Column(name = "SURNAME")
-    val surname: String,
+    var surname: String? = null
 
     @Column(name = "AGE")
-    val age: Int
-
-) {
-    constructor() : this(0,"","",0) {
-
-    }
+    var age: Int? = null
 }
