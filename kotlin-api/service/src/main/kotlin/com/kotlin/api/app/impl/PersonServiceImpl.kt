@@ -34,10 +34,19 @@ class PersonServiceImpl(
     }
 
     override fun update(id: Long, dto: Person): Person {
-        TODO("Not yet implemented")
+        val persons = repository.findById(id).orElse(null);
+        var update = persons.copy(name = dto.name, surname = dto.surname, age = dto.age)
+
+        var model = repository.save(update);
+        log.info("update person {}", id)
+        return model;
     }
 
     override fun delete(id: Long) {
-        TODO("Not yet implemented")
+        if (repository.existsById(id)) {
+            repository.deleteById(id)
+            log.info("delete person {}", id)
+        }
+
     }
 }
