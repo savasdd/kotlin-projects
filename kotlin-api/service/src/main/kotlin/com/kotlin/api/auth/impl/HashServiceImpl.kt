@@ -10,7 +10,7 @@ class HashServiceImpl() : HashService {
         return BCrypt.checkpw(input, hash)
     }
 
-    override fun hashBcrypt(input: String): String {
+    override fun hashBcrypt(input: String?): String {
         return BCrypt.hashpw(input, BCrypt.gensalt(10))
     }
 }

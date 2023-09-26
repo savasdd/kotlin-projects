@@ -28,6 +28,7 @@ class SecurityConfig(
         // Define public and private routes
         http.authorizeHttpRequests()
             .requestMatchers(AntPathRequestMatcher("/api/auth/getToken", HttpMethod.POST.name)).permitAll()
+            .requestMatchers(AntPathRequestMatcher("/api/users", HttpMethod.POST.name)).permitAll()
             .requestMatchers(AntPathRequestMatcher("/api/**")).authenticated()
             .anyRequest().permitAll()
 
