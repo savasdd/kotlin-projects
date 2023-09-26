@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor
 import lombok.Getter
 import lombok.NoArgsConstructor
 import lombok.Setter
+import org.hibernate.annotations.Where
 import javax.persistence.*
 
 @Getter
@@ -13,6 +14,7 @@ import javax.persistence.*
 @NoArgsConstructor
 @Entity
 @Table(name = "person")
+@Where(clause = "is_deleted = 0")
 class Person : BaseEntity() {
 
     @Id

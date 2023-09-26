@@ -41,9 +41,10 @@ class PersonServiceImpl(
         val dep = dto.dempartment?.id?.let { department.findById(it) }
 
         var update = persons.stream().map { m ->
-            m.firstName = dto.firstName
-            m.lastName = dto.lastName
-            m.age = dto.age
+            m.firstName = dto?.firstName
+            m.lastName = dto?.lastName
+            m.age = dto?.age
+            m.salary = dto?.salary
             m.dempartment = dep?.get()
             return@map m
         }.findFirst().get();
