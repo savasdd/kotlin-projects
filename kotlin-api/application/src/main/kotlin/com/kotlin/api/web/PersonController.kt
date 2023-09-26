@@ -16,22 +16,22 @@ class PersonController(
 ) {
 
     @GetMapping(value = ["/persons"])
-    fun getAll(): ResponseEntity<List<Person>> {
+    fun getAllPerson(): ResponseEntity<List<Person>> {
         return ResponseEntity.ok(service.getAll())
     }
 
     @PostMapping(value = ["/persons"])
-    fun create(@RequestBody dto: Person): ResponseEntity<Person> {
+    fun createPerson(@RequestBody dto: Person): ResponseEntity<Person> {
         return ResponseEntity(service.create(dto), HttpStatus.CREATED)
     }
 
     @PutMapping(value = ["/persons/{id}"])
-    fun update(@PathVariable id: Long, @RequestBody dto: Person): ResponseEntity<Person> {
+    fun updatePerson(@PathVariable id: Long, @RequestBody dto: Person): ResponseEntity<Person> {
         return ResponseEntity(service.update(id, dto), HttpStatus.OK)
     }
 
     @DeleteMapping(value = ["/persons/{id}"])
-    fun delete(@PathVariable id: Long): ResponseEntity<Person> {
+    fun deletePerson(@PathVariable id: Long): ResponseEntity<Person> {
         service.delete(id)
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }

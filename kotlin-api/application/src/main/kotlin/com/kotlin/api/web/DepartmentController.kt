@@ -2,6 +2,7 @@ package com.kotlin.api.web
 
 import com.kotlin.api.app.DepartmentService
 import com.kotlin.api.entity.Department
+import io.swagger.v3.oas.annotations.Operation
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -23,28 +24,33 @@ class DepartmentController(
     val service: DepartmentService
 ) {
 
+    @Operation(description = "Department getAll")
     @GetMapping(value = ["/departments"])
-    fun getAll(): ResponseEntity<List<Department>> {
+    fun getAllDepartment(): ResponseEntity<List<Department>> {
         return ResponseEntity(service.getAll(), HttpStatus.OK)
     }
 
+    @Operation(description = "Department getById")
     @GetMapping(value = ["/departments/{id}"])
-    fun getById(@PathVariable id: Long): ResponseEntity<Department> {
+    fun getByIdDepartment(@PathVariable id: Long): ResponseEntity<Department> {
         return ResponseEntity(service.getById(id), HttpStatus.OK)
     }
 
+    @Operation(description = "Department create")
     @PostMapping(value = ["/departments"])
-    fun create(@RequestBody dt: Department): ResponseEntity<Department> {
+    fun createDepartment(@RequestBody dt: Department): ResponseEntity<Department> {
         return ResponseEntity(service.create(dt), HttpStatus.CREATED)
     }
 
+    @Operation(description = "Department update")
     @PutMapping(value = ["/departments/{id}"])
-    fun update(@PathVariable id: Long, @RequestBody dto: Department): ResponseEntity<Department> {
+    fun updateDepartment(@PathVariable id: Long, @RequestBody dto: Department): ResponseEntity<Department> {
         return ResponseEntity(service.update(id, dto), HttpStatus.OK)
     }
 
+    @Operation(description = "Department delete")
     @DeleteMapping(value = ["/departments/{id}"])
-    fun delete(@PathVariable id: Long): ResponseEntity<Department> {
+    fun deleteDepartment(@PathVariable id: Long): ResponseEntity<Department> {
         service.delete(id)
         return ResponseEntity(HttpStatus.NO_CONTENT);
     }
