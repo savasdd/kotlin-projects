@@ -19,12 +19,19 @@ class Person : BaseEntity() {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = 0
 
-    @Column(name = "NAME")
-    var name: String? = null
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dempartment")
+    var dempartment: Department? = null;
 
-    @Column(name = "SURNAME")
-    var surname: String? = null
+    @Column(name = "firstName")
+    var firstName: String? = null
 
-    @Column(name = "AGE")
+    @Column(name = "lastName")
+    var lastName: String? = null
+
+    @Column(name = "age")
     var age: Int? = null
+
+    @Column(name = "salary")
+    var salary: Double? = null
 }

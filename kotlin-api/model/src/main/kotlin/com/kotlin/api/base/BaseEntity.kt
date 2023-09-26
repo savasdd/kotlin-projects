@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import lombok.Getter
 import lombok.Setter
 import org.springframework.data.annotation.CreatedBy
-import org.springframework.data.annotation.LastModifiedDate
+import org.springframework.data.annotation.LastModifiedBy
 import java.util.*
 import javax.persistence.Column
 import javax.persistence.MappedSuperclass
@@ -34,7 +34,7 @@ open class BaseEntity {
     private var createdBy: String? = null
 
     @JsonIgnore
-    @LastModifiedDate
+    @LastModifiedBy
     @Column(name = "updatedBy")
     private var updatedBy: String? = null
 

@@ -35,15 +35,13 @@ class PersonServiceImpl(
 
     override fun update(id: Long, dto: Person): Person {
         val persons = repository.findById(id);
-        //var update = persons.copy(name = dto.name, surname = dto.surname, age = dto.age)
 
         var update = persons.stream().map { m ->
-            m.name = dto.name
-            m.surname = dto.surname
+            m.firstName = dto.firstName
+            m.lastName = dto.lastName
             m.age = dto.age
             return@map m
         }.findFirst().get();
-
 
         var model = repository.save(update);
         log.info("update person {}", id)
