@@ -3,11 +3,7 @@ package com.kotlin.api.auth.impl
 import com.kotlin.api.app.UserService
 import com.kotlin.api.auth.TokenService
 import com.kotlin.api.entity.Users
-import org.springframework.security.oauth2.jwt.JwsHeader
-import org.springframework.security.oauth2.jwt.JwtClaimsSet
-import org.springframework.security.oauth2.jwt.JwtDecoder
-import org.springframework.security.oauth2.jwt.JwtEncoder
-import org.springframework.security.oauth2.jwt.JwtEncoderParameters
+import org.springframework.security.oauth2.jwt.*
 import org.springframework.stereotype.Service
 import java.time.Instant
 import java.time.temporal.ChronoUnit
@@ -21,13 +17,13 @@ class TokenServiceImpl(
 ) : TokenService {
 
     private final var hash: String = "HS256";
-    override fun generateToken(user: Users): String {
+    override fun generateToken(user: Users): Jwt {
         val header = JwsHeader.with { hash }.build()
         val claims = JwtClaimsSet.builder()
             .issuedAt(Instant.now()).expiresAt(Instant.now().plus(30L, ChronoUnit.DAYS))
             .subject(user.username).claim("userId", user.id).build()
 
-        return jwtEncoder.encode(JwtEncoderParameters.from(header, claims)).tokenValue
+        return jwtEncoder.encode(JwtEncoderParameters.from(header, claims))
     }
 
     override fun parseToken(token: String): Users {

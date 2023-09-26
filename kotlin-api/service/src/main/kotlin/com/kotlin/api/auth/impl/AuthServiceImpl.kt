@@ -7,6 +7,7 @@ import com.kotlin.api.auth.TokenService
 import com.kotlin.api.dto.TokenDto
 import com.kotlin.api.dto.TokenResponseDto
 import org.springframework.stereotype.Service
+import java.time.Instant
 
 @Service
 class AuthServiceImpl(
@@ -20,6 +21,12 @@ class AuthServiceImpl(
         if (!hashService.checkBcrypt(dto.password, user.password))
             throw Exception("Login failed")
 
-        return TokenResponseDto(token = tokenService.generateToken(user))
+        var token = tokenService.generateToken(user);
+
+        return TokenResponseDto(
+            token = token.tokenValue,
+            username = token.claims["sub"] as String,
+            expiredDate = token.claims["exp"] as Instant
+        )
     }
 }
