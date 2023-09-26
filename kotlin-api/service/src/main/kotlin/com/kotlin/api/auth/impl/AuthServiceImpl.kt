@@ -17,7 +17,7 @@ class AuthServiceImpl(
     override fun getToken(dto: TokenDto): TokenResponseDto {
         val user = userService.findByUsername(dto.username) ?: throw Exception("Login failed")
 
-        if (!hashService.checkBcrypt(dto.username, dto.password))
+        if (!hashService.checkBcrypt(dto.password, user.password))
             throw Exception("Login failed")
 
         return TokenResponseDto(token = tokenService.generateToken(user))

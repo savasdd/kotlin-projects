@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class HashServiceImpl() : HashService {
-    override fun checkBcrypt(input: String, hash: String): Boolean {
+    override fun checkBcrypt(input: String, hash: String?): Boolean {
         return BCrypt.checkpw(input, hash)
     }
 

@@ -32,7 +32,7 @@ class UserServiceImpl(
     }
 
     override fun findByUsername(username: String): Users {
-        return repository.findByUsername(username).orElse(throw IllegalStateException("User Not Found!"))
+        return repository.findByUsername(username).get()
     }
 
     override fun existByUsername(username: String): Boolean {
