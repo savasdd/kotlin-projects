@@ -1,5 +1,6 @@
 package com.kotlin.api.app.impl
 
+import com.kotlin.api.app.DepartmentRepository
 import com.kotlin.api.app.PersonRepository
 import com.kotlin.api.app.PersonService
 import com.kotlin.api.entity.Person
@@ -12,8 +13,10 @@ import org.springframework.stereotype.Service
 @Service
 class PersonServiceImpl(
     @Autowired
-    val repository: PersonRepository
+    val repository: PersonRepository,
 
+    @Autowired
+    val department: DepartmentRepository
 
 ) : PersonService {
 
@@ -35,11 +38,13 @@ class PersonServiceImpl(
 
     override fun update(id: Long, dto: Person): Person {
         val persons = repository.findById(id);
+        val dep = dto.dempartment?.id?.let { department.findById(it) }
 
         var update = persons.stream().map { m ->
             m.firstName = dto.firstName
             m.lastName = dto.lastName
             m.age = dto.age
+            m.dempartment = dep?.get()
             return@map m
         }.findFirst().get();
 

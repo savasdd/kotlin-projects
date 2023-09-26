@@ -1,4 +1,4 @@
-package com.kotlin.api.controller
+package com.kotlin.api.web
 
 import com.kotlin.api.app.PersonService
 import com.kotlin.api.entity.Person
