@@ -9,16 +9,17 @@ import org.springframework.security.oauth2.jwt.JwtDecoder
 import org.springframework.security.oauth2.jwt.JwtEncoder
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder
+import java.nio.charset.StandardCharsets
 import javax.crypto.spec.SecretKeySpec
 
 @Configuration
 class JwtConfig(
 
-    @Value("${"security.key"}")
+    @Value("\${security.key}")
     private val key: String
 ) {
 
-    private val secretKey = SecretKeySpec(key.toByteArray(), "HmacSHA256")
+    private val secretKey = SecretKeySpec(key.toByteArray(StandardCharsets.UTF_8), "HmacSHA256")
 
     @Bean
     fun jwtDecoder(): JwtDecoder {
