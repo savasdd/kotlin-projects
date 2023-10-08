@@ -11,7 +11,6 @@ import java.util.*
 @Component
 class JwtTokenManager(
     //@Value("\${security.key}")
-    //private val secret: String
 ) {
 
     private val secret = "5cf249320242ac120002e5efebf0e985d220ecbb6676f00341be0a2b257e"
