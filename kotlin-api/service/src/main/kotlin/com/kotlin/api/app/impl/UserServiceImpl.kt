@@ -7,10 +7,10 @@ import com.kotlin.api.dto.TokenDto
 import com.kotlin.api.entity.Users
 import com.kotlin.api.security.JwtTokenManager
 import mu.KotlinLogging
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
-import java.time.Instant
-import java.util.Date
+import org.webjars.NotFoundException
 
 @Service
 class UserServiceImpl(
@@ -40,6 +40,7 @@ class UserServiceImpl(
     }
 
     override fun getToken(dto: TokenDto): ResponseDto {
+        repository.findByUsername(dto.username).orElseThrow { NotFoundException("User Not Found!") }
         var token = jwt.generateToken(dto.username)
         var claims = jwt.getClaims(token)
 

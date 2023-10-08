@@ -16,7 +16,6 @@ class JwtTokenManager(
 
     private val secret = "5cf249320242ac120002e5efebf0e985d220ecbb6676f00341be0a2b257e"
     private val expiration = 6000000
-    private var test = Instant.now().plus(30L, ChronoUnit.DAYS)
 
     fun generateToken(username: String?): String {
         return Jwts
