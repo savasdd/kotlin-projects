@@ -7,7 +7,6 @@ import com.kotlin.api.dto.TokenDto
 import com.kotlin.api.entity.Users
 import com.kotlin.api.security.JwtTokenManager
 import mu.KotlinLogging
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import org.webjars.NotFoundException
