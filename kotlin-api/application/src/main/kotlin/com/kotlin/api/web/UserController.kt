@@ -1,6 +1,7 @@
 package com.kotlin.api.web
 
 import com.kotlin.api.app.UserService
+import com.kotlin.api.dto.TokenDto
 import com.kotlin.api.entity.Users
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -28,6 +29,11 @@ class UserController(
     @PostMapping(value = ["/users"])
     fun createPerson(@RequestBody dto: Users): ResponseEntity<Users> {
         return ResponseEntity(service.create(dto), HttpStatus.CREATED)
+    }
+
+    @PostMapping(value = ["/users/auth"])
+    fun getToken(@RequestBody dto: TokenDto): ResponseEntity<Users> {
+        return ResponseEntity(service.getToken(dto), HttpStatus.CREATED)
     }
 
 

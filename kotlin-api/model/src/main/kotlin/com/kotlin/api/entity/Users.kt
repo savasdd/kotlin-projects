@@ -37,5 +37,4 @@ class Users : BaseEntity() {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     var role: EUserRole? = null
-
 }
