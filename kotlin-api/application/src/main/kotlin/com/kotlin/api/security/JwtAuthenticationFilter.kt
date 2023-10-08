@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class JwtAuthenticationFilter(
-    private val jwtTokenUtil: JwtTokenUtil,
+    private val jwtTokenUtil: JwtTokenManager,
     private val authenticationManager: AuthenticationManager
 ) :
     UsernamePasswordAuthenticationFilter() {

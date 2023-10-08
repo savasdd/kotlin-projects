@@ -2,6 +2,7 @@ package com.kotlin.api.auth
 
 import com.kotlin.api.app.UserRepository
 import com.kotlin.api.dto.UserSecurity
+import com.kotlin.api.enums.EUserRole
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -20,7 +21,7 @@ class UserDetailsService(
             id = user.get().id,
             usernames = user.get().username,
             passwords = user.get().password,
-            uAuthorities = Collections.singleton(SimpleGrantedAuthority("user"))
+            uAuthorities = Collections.singleton(SimpleGrantedAuthority(EUserRole.ADMIN.name))
         )
     }
 }

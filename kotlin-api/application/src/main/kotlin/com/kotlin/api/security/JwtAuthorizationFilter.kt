@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 class JwtAuthorizationFilter(
-    private val jwtTokenUtil: JwtTokenUtil,
+    private val jwtTokenUtil: JwtTokenManager,
     private val service: UserDetailsService,
     authManager: AuthenticationManager,
 

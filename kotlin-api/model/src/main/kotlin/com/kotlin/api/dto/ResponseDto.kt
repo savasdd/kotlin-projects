@@ -1,9 +1,8 @@
 package com.kotlin.api.dto
 
-import java.time.Instant
-
 data class ResponseDto(
-    val username: String,
-    val expiredDate: Instant,
-    val token: String,
+    val username: String?,
+    val expiredDate: Int?,
+    val token: String?,
+    val role: String?
 )

@@ -2,16 +2,21 @@ package com.kotlin.api.app.impl
 
 import com.kotlin.api.app.UserRepository
 import com.kotlin.api.app.UserService
+import com.kotlin.api.dto.ResponseDto
 import com.kotlin.api.dto.TokenDto
 import com.kotlin.api.entity.Users
+import com.kotlin.api.security.JwtTokenManager
 import mu.KotlinLogging
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
+import java.time.Instant
+import java.util.Date
 
 @Service
 class UserServiceImpl(
     private val passwordEncoder: BCryptPasswordEncoder,
-    private val repository: UserRepository
+    private val repository: UserRepository,
+    private val jwt: JwtTokenManager,
 ) : UserService {
 
     private val log = KotlinLogging.logger {}
@@ -34,8 +39,19 @@ class UserServiceImpl(
         return model
     }
 
-    override fun getToken(dto: TokenDto): Users {
-        TODO("Not yet implemented")
+    override fun getToken(dto: TokenDto): ResponseDto {
+        var token = jwt.generateToken(dto.username)
+        var claims = jwt.getClaims(token)
+
+
+        var response = ResponseDto(
+            token = token,
+            username = if (claims.containsKey("sub")) claims["sub"].toString() else null,
+            expiredDate = if (claims.containsKey("exp")) claims["exp"] as Int? else null,
+            role = if (claims.containsKey("role")) claims["role"].toString() else null
+        );
+
+        return response;
     }
 
 }
