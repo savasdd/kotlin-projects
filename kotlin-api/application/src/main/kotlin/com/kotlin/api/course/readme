@@ -1,0 +1,14 @@
+
+2011 yılında duyuruldu
+2019 google io olarak duyurdu
+NullPointException hatalarının önüne geçer
+Javaya göre daha basit ve okunabilir
+
+değişkenler:
+var
+val
+int,float,double
+String
+Boolean
+
+val değişken türüne atanan değer sonradan değiştirilemez
